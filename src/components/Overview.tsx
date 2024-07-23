@@ -21,12 +21,14 @@ useEffect(()=>{
 }, [players]);
 
 return (
-    <div className='border'>
+    <div className='border border-black m-5'>
     <h1 className='text-4xl p-5' >Overview</h1>
-    <h2 className='text-3xl p-4'>Select a card for details</h2>
+    <h2 className='text-3xl px-5'>Select a card for details</h2>
     <div className='grid gap-6 grid-cols-3 grid-rows-2 px-5 '>
       {localPlayers.map((player) => (
-        <button  className=' p-5 m-5 text-start text-2xl border h-40 w-25   focus:bg-blue-500 font-sans' key={player.id} onClick={() => onSelect(player)}>
+        <button  className=' p-5 m-5 text-start text-2xl  border border-black   focus:bg-green-500 font-sans' 
+        key={player.id}
+         onClick={() => { console.log('Card clicked:',player); onSelect(player)}}>
           <p className='truncate'>{player.realName}</p>
           <p className='truncate'>{player.playerName}</p>
           <p className='truncate '>{player.asset}</p>

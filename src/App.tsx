@@ -1,13 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import './App.css';
 import Details from './components/Details';
 import Sort from './components/Sort';
-import PlayerList from './components/Overview';
+import Overview from './components/Overview';
 import { fetchPlayers, Player } from './services/playerService';
 
 const App: React.FC = () => {
-  const [players, setPlayers] = useState<Player[]>([]); 
-  const [selectedPlayer, setSelectedPlayer] = useState<Player | null>(null); 
+  const [players, setPlayers] = useState<Player[]>([]);
+  const [selectedPlayer, setSelectedPlayer] = useState<Player | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const getPlayers = async () => {
@@ -34,18 +35,42 @@ const App: React.FC = () => {
   };
 
   const handleSelectPlayer = (player: Player) => {
-    setSelectedPlayer(player);
+    if (selectedPlayer && selectedPlayer.id === player.id) {
+      // Deselect player if the same player is clicked
+      setSelectedPlayer(null);
+    } else {
+      setSelectedPlayer(player);
+    }
   };
 
+  const handleClickOutside = (event: MouseEvent) => {
+    console.log('Handling click outside');
+    if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
+      console.log('Clicked outside of container');
+      setSelectedPlayer(null);
+    }
+  };
+
+  useEffect(() => {
+    console.log('Adding event listener for click outside');
+    document.addEventListener('click', handleClickOutside, true);
+    return () => {
+      console.log('Removing event listener for click outside');
+      document.removeEventListener('click', handleClickOutside, true);
+    };
+  }, []);
+
   return (
-    <div className='grid  grid-cols-3 bg-blue-300 '>
-      <div className='col-span-2'>
-          {selectedPlayer && <Details player={selectedPlayer} />}
-          <PlayerList players={players} onSelect={handleSelectPlayer}/>
-        
-        </div>
-        <div className=' justify-end'>
-          <Sort onSort={handleSort} />
+    <div  className='grid grid-cols-3 min-h-screen'>
+      <div className='col-span-2' ref={containerRef}>
+        {selectedPlayer && <Details player={selectedPlayer} />}
+        <Overview players={players} onSelect={handleSelectPlayer} />
+      </div>
+      <div className='justify-end'>
+        <Sort onSort={handleSort} />
+      </div>
+      <div>
+        {/*<p>Selected player: {selectedPlayer ? selectedPlayer.realName : 'None'}</p>*/}
       </div>
     </div>
   );
