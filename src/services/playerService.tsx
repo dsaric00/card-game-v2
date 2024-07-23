@@ -1,13 +1,13 @@
-interface Player{
+export interface Player{
     id: number;
     realName: string;
     playerName:string;
     asset:string;
 }
 
-export const fetchPlayers = async () => {
+export const fetchPlayers = async (): Promise<Player[]> => {
     try {
-   const response =await fetch('./data/player.json');
+   const response =await fetch('./assets/players.json');
    if(!response.ok){
     throw new Error('Network response was not ok');
    }
