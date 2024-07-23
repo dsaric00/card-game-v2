@@ -24,25 +24,25 @@ const Sort = ({ onSort }:SortProps) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="flex items-center">
+    <form onSubmit={handleSubmit} className="text-center">
       <h1>Control</h1> 
       <div className="ml-2">
         <button
-          className={`btn btn-primary ${order === 'asc' ? 'selected' : ''}`} 
+          className={` ${order === 'asc' } bg-blue-500 hover:bg-red-700 text-white font-bold py-2 px-4 mt-4 rounded `   } 
           type="button"
           onClick={() => handleSort1('asc')} 
         >
           Ascending
         </button>
         <button
-          className={`btn btn-primary ${order === 'desc' ? 'selected' : ''}`} 
+          className={` ${order === 'desc' }  bg-blue-500 hover:bg-red-700 text-white font-bold py-2 px-4 mt-4 rounded  `} 
           type="button"
           onClick={() => handleSort1('desc')} 
         >
           Descending
         </button>
       </div>
-      <button className="submit btn btn-success" type="submit">
+      <button className=" bg-blue-500 hover:bg-green-700 text-white font-bold py-2 px-4 mt-4 rounded" type="submit">
         Submit
       </button> 
     </form>

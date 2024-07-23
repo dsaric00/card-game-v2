@@ -10,8 +10,7 @@ interface DetailsPtops{
 }
  const Details =({player}: DetailsPtops)=>{
     return(
-        <div>
-            <h1 className="text-9xl text-red-500">Hello World!</h1>
+        <div className="slide">
             <h2>Details:</h2>
             <h2> Real Name: {player.realName}</h2>
             <h2> Player Name: {player.playerName}</h2>

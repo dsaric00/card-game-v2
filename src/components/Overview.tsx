@@ -23,9 +23,9 @@ useEffect(()=>{
 return (
     <div>
     <h2>Overview</h2>
-    <div className='card-flex'>
+    <div className='grid gap-6 grid-cols-3 grid-rows-2'>
       {localPlayers.map((player) => (
-        <div   key={player.id} onClick={() => onSelect(player)}>
+        <div  className='w-20 h-40 truncate hover:text-clip ' key={player.id} onClick={() => onSelect(player)}>
           <p>{player.realName}</p>
           <p>{player.playerName}</p>
           <p>{player.asset}</p>

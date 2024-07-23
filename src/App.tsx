@@ -38,16 +38,16 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className='main-container'>
-      <div className='top-container'>
-        <div className='left-container'>
+    <div className=' grid-cols-2 grid-rows-2'>
+      <div className='grid gap-6 grid-cols-2'>
+        <div className='w-100 h-72  justify-start' >
           {selectedPlayer && <Details player={selectedPlayer} />}
         </div>
-        <div className='right-container'>
+        <div className='w-72 h-72  justify-end'>
           <Sort onSort={handleSort} />
         </div>
       </div>
-      <div className='bottom-container'>
+      <div className='w-1/2 h-1/3'>
         <PlayerList players={players} onSelect={handleSelectPlayer} />
       </div>
     </div>
