@@ -6,8 +6,8 @@ import PlayerList from './components/Overview';
 import { fetchPlayers, Player } from './services/playerService';
 
 const App: React.FC = () => {
-  const [players, setPlayers] = useState<Player[]>([]); // Stanje za podatke igrača, inicijalno prazno polje
-  const [selectedPlayer, setSelectedPlayer] = useState<Player | null>(null); // Stanje za odabranog igrača, inicijalno null
+  const [players, setPlayers] = useState<Player[]>([]); 
+  const [selectedPlayer, setSelectedPlayer] = useState<Player | null>(null); 
 
   useEffect(() => {
     const getPlayers = async () => {
@@ -38,17 +38,14 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className=' grid-cols-2 grid-rows-2'>
-      <div className='grid gap-6 grid-cols-2'>
-        <div className='w-100 h-72  justify-start' >
+    <div className='grid  grid-cols-3 bg-blue-300 '>
+      <div className='col-span-2'>
           {selectedPlayer && <Details player={selectedPlayer} />}
+          <PlayerList players={players} onSelect={handleSelectPlayer}/>
+        
         </div>
-        <div className='w-72 h-72  justify-end'>
+        <div className=' justify-end'>
           <Sort onSort={handleSort} />
-        </div>
-      </div>
-      <div className='w-1/2 h-1/3'>
-        <PlayerList players={players} onSelect={handleSelectPlayer} />
       </div>
     </div>
   );

@@ -24,25 +24,25 @@ const Sort = ({ onSort }:SortProps) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="text-center">
-      <h1>Control</h1> 
+    <form onSubmit={handleSubmit} className="text-center border m-5 ">
+      <h1 className='text-4xl' >Control</h1> 
       <div className="ml-2">
         <button
-          className={` ${order === 'asc' } bg-blue-500 hover:bg-red-700 text-white font-bold py-2 px-4 mt-4 rounded `   } 
+          className={` ${order === 'asc' } bg-blue-500 focus:bg-red-700 text-white font-bold py-2 px-4 mt-4 rounded m-2 `   } 
           type="button"
           onClick={() => handleSort1('asc')} 
         >
           Ascending
         </button>
         <button
-          className={` ${order === 'desc' }  bg-blue-500 hover:bg-red-700 text-white font-bold py-2 px-4 mt-4 rounded  `} 
+          className={` ${order === 'desc' }  bg-blue-500 focus:bg-red-700 text-white font-bold py-2 px-4 mt-4 rounded m-2  `} 
           type="button"
           onClick={() => handleSort1('desc')} 
         >
           Descending
         </button>
       </div>
-      <button className=" bg-blue-500 hover:bg-green-700 text-white font-bold py-2 px-4 mt-4 rounded" type="submit">
+      <button className=" bg-green-600 hover:bg-green-900 text-white font-bold py-2 px-4 mt-4 rounded" type="submit">
         Submit
       </button> 
     </form>
