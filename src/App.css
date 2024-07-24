@@ -2,3 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+
+body {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.dark body {
+  background-color: #000000;
+  color: #ffffff;
+  border: #ffffff;
+}

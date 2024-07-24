@@ -1,50 +1,69 @@
 import React, { useState } from 'react';
 import '../App.css';
-type SortOrder= 'asc'| 'desc';
+
+type SortOrder = 'asc' | 'desc';
+
 // interface for props
 interface SortProps {
   onSort: (order: SortOrder) => void;
+  isDarkMode: boolean;
+  toggleDarkMode: () => void;
 }
 
-const Sort = ({ onSort }:SortProps) => {
-  const [order, setOrder] = useState<'asc' | 'desc'>();
+const Sort = ({ onSort, isDarkMode, toggleDarkMode }: SortProps) => {
+  // State to manage the sort order, default is 'asc'
+  const [order, setOrder] = useState<SortOrder>('asc');
 
-  
-
-  // Funkcija za promjenu redoslijeda sortiranja
+  //Function to change the sort order
   const handleSort1 = (selectedOrder: SortOrder) => {
-    setOrder(selectedOrder); 
+    setOrder(selectedOrder);
   };
 
-  // Funkcija za podnošenje forme
+  // Function to handle form submission
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Submitting order: ', order); 
-    onSort(order); 
+    console.log('Submitting order: ', order);
+    onSort(order);
   };
 
   return (
-    <form onSubmit={handleSubmit} className="text-center border border-black m-5 ">
-      <h1 className='text-4xl' >Control</h1> 
-      <div className="ml-2">
+    <form
+      onSubmit={handleSubmit}
+      className="text-center border border-black m-5  dark:border-white "
+    >
+      <div className='flex justify-between items-center p-5'>
+      <h1 className="text-4xl text-left">Control</h1>
+      <button
+        className="rounded-full bg-slate-300  text-black p-2"
+        type="button"
+        onClick={toggleDarkMode}
+      >
+        {isDarkMode ? 'Light Mode' : 'Dark Mode'}
+      </button>
+      </div>
+
+      <div className="">
         <button
-          className={` ${order === 'asc' } bg-blue-500 focus:bg-red-700 focus:ring  font-sans py-2 px-4 mt-4  m-2 `   } 
+          className={` ${order === 'asc'} bg-blue-500 focus:bg-red-700 focus:ring  font-sans py-2 px-4 rounded-xl m-4 text-2xl `}
           type="button"
-          onClick={() => handleSort1('asc')} 
+          onClick={() => handleSort1('asc')}
         >
           Ascending
         </button>
         <button
-          className={` ${order === 'desc' }  bg-blue-500 focus:bg-red-700 focus:ring  font-sans py-2 px-4 mt-4 rounded m-2  `} 
+          className={` ${order === 'desc'}  bg-blue-500 focus:bg-red-700 focus:ring  font-sans py-2 px-4 rounded-xl m-4 text-2xl `}
           type="button"
-          onClick={() => handleSort1('desc')} 
+          onClick={() => handleSort1('desc')}
         >
           Descending
         </button>
       </div>
-      <button className=" bg-green-600 hover:bg-green-900  font-sans py-2 px-4 m-5 rounded " type="submit">
+      <button
+        className=" bg-green-600 hover:bg-green-900  font-sans py-2 px-4 m-5 rounded-full text-2xl "
+        type="submit"
+      >
         Submit
-      </button> 
+      </button>
     </form>
   );
 };
