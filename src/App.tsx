@@ -75,7 +75,11 @@ const App: React.FC = () => {
         <Overview players={players} onSelect={handleSelectPlayer} />
       </div>
       <div className="justify-end">
-        <Sort onSort={handleSort} isDarkMode={isDarkMode} toggleDarkMode={()=> setIsDarkMode(!isDarkMode)} />
+        <Sort
+          onSort={handleSort}
+          isDarkMode={isDarkMode}
+          toggleDarkMode={() => setIsDarkMode(!isDarkMode)}
+        />
       </div>
     </div>
   );

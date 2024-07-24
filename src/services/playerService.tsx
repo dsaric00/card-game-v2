@@ -4,7 +4,7 @@ export interface Player {
   playerName: string;
   asset: string;
 }
-
+//Function to fetch players data from j JSON file 
 export const fetchPlayers = async (): Promise<Player[]> => {
   try {
     const response = await fetch('./assets/players.json');

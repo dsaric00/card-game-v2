@@ -29,12 +29,12 @@ const Sort = ({ onSort, isDarkMode, toggleDarkMode }: SortProps) => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="text-center border border-black m-5  dark:border-white "
+      className="text-center rounded-3xl border border-black m-3  dark:border-white "
     >
       <div className='flex justify-between items-center p-5'>
-      <h1 className="text-4xl text-left">Control</h1>
+      <h1 className="text-4xl text-left">Controls</h1>
       <button
-        className="rounded-full bg-slate-300  text-black p-2"
+        className="rounded-full  bg-slate-300  text-black p-3 hover:bg-slate-500"
         type="button"
         onClick={toggleDarkMode}
       >
@@ -44,25 +44,25 @@ const Sort = ({ onSort, isDarkMode, toggleDarkMode }: SortProps) => {
 
       <div className="">
         <button
-          className={` ${order === 'asc'} bg-blue-500 focus:bg-red-700 focus:ring  font-sans py-2 px-4 rounded-xl m-4 text-2xl `}
+          className={` ${order === 'asc'} text-center bg-blue-400 focus:bg-blue-500 focus:ring hover:bg-blue-500 font-sans py-2 px-4 rounded-xl my-2 mx-2 text-2xl `}
           type="button"
           onClick={() => handleSort1('asc')}
         >
-          Ascending
+          SORT ASC
         </button>
         <button
-          className={` ${order === 'desc'}  bg-blue-500 focus:bg-red-700 focus:ring  font-sans py-2 px-4 rounded-xl m-4 text-2xl `}
+          className={` ${order === 'desc'} text-center bg-blue-400 focus:bg-blue-500 focus:ring hover:bg-blue-500  font-sans py-2 px-4 rounded-xl my-2 mx-2 text-2xl `}
           type="button"
           onClick={() => handleSort1('desc')}
         >
-          Descending
+          SORT DESC
         </button>
       </div>
       <button
-        className=" bg-green-600 hover:bg-green-900  font-sans py-2 px-4 m-5 rounded-full text-2xl "
+        className=" bg-green-500 hover:bg-green-600  font-sans py-2 px-20  mb-3 rounded-full text-2xl "
         type="submit"
       >
-        Submit
+        SUBMIT
       </button>
     </form>
   );

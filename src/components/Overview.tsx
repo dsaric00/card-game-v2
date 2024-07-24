@@ -1,4 +1,4 @@
-import  { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import '../App.css';
 
 interface Player {
@@ -16,18 +16,19 @@ interface OverviewPropsb {
 const Overview = ({ players, onSelect }: OverviewPropsb) => {
   const [localPlayers, setLocalPlayers] = useState<Player[]>(players);
 
+  // Update localPlayers state when the player prop changes
   useEffect(() => {
     setLocalPlayers(players);
   }, [players]);
 
   return (
-    <div className="border border-black dark:border-white m-5">
+    <div className="border border-black rounded-3xl dark:border-white m-3">
       <h1 className="text-4xl p-5">Overview</h1>
       <h2 className="text-3xl px-5">Select a card for details</h2>
-      <div className="grid gap-3 grid-cols-3 grid-rows-2 px-5 ">
+      <div className="grid gap-1 grid-cols-3 grid-rows-2 px-5 ">
         {localPlayers.map((player) => (
           <button
-            className=" p-5 m-5 text-start text-2xl  border border-black dark:border-white  focus:bg-green-500 font-sans"
+            className=" p-5 m-5 text-start text-2xl  border border-black rounded-2xl hover:bg-green-300 focus:bg-green-500 font-sans dark:border-white "
             key={player.id}
             onClick={() => {
               console.log('Card clicked:', player);
