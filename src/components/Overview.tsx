@@ -25,7 +25,7 @@ const Overview = ({ players, onSelect }: OverviewPropsb) => {
     <div className="border border-black rounded-3xl dark:border-white m-3">
       <h1 className="text-4xl p-5">Overview</h1>
       <h2 className="text-3xl px-5">Select a card for details</h2>
-      <div className="grid gap-1 grid-cols-3 grid-rows-2 px-5 ">
+      <div className="grid  gap-4 grid-cols-2 sm:grid-cols-2 lg:grid-cols-3  p-4">
         {localPlayers.map((player) => (
           <button
             className=" p-5 m-5 text-start text-2xl  border border-black rounded-2xl hover:bg-green-300 focus:bg-green-500 font-sans dark:border-white "

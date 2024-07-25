@@ -69,12 +69,12 @@ const App: React.FC = () => {
   }, [isDarkMode]);
 
   return (
-    <div className="grid grid-cols-3 max-h-screen">
-      <div className="col-span-2" ref={containerRef}>
+    <div className=" md:flex ">
+      <div className='justify-start '  ref={containerRef}>
         {selectedPlayer && <Details player={selectedPlayer} />}
         <Overview players={players} onSelect={handleSelectPlayer} />
       </div>
-      <div className="justify-end">
+      <div className="justify-end md:w-1/3">
         <Sort
           onSort={handleSort}
           isDarkMode={isDarkMode}
