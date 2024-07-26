@@ -10,8 +10,7 @@ const App: React.FC = () => {
   const [selectedPlayer, setSelectedPlayer] = useState<Player | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const [isDarkMode, setIsDarkMode] = useState(false);
-  
-    // useEffect to fetch player data 
+
   useEffect(() => {
     const getPlayers = async () => {
       try {
@@ -23,7 +22,7 @@ const App: React.FC = () => {
     };
     getPlayers();
   }, []);
-  // Function to sort players by their real names
+
   const handleSort = (order: 'asc' | 'desc') => {
     setPlayers((prevPlayers) => {
       return [...prevPlayers].sort((a, b) => {
@@ -35,45 +34,52 @@ const App: React.FC = () => {
       });
     });
   };
-  //Function to select or deselect a player 
-const handleSelectPlayer = (player: Player | null) => {
-  setSelectedPlayer(player);
-};
 
-    //Function to handle clicks outside the container 
+  const handleSelectPlayer = (player: Player | null) => {
+    if (selectedPlayer && player && selectedPlayer.id === player.id) {
+      setSelectedPlayer(null);
+      const focusedElement = document.activeElement as HTMLElement;
+      if (focusedElement) {
+        focusedElement.blur();
+      }
+    } else {
+      setSelectedPlayer(player);
+    }
+  };
+
   const handleClickOutside = (event: MouseEvent) => {
-    console.log('Handling click outside');
     if (
       containerRef.current &&
       !containerRef.current.contains(event.target as Node)
     ) {
-      console.log('Clicked outside of container');
       setSelectedPlayer(null);
     }
   };
 
-    // useEffect to set up and clean up event listener for clicks outside the container 
   useEffect(() => {
     document.addEventListener('click', handleClickOutside, true);
     return () => {
       document.removeEventListener('click', handleClickOutside, true);
     };
   }, []);
-  // useEffect for Dark Mod
+
   useEffect(() => {
     document.documentElement.classList.toggle('dark', isDarkMode);
   }, [isDarkMode]);
 
   return (
-    <div className=" md:flex ">
-      <div className="flex-1 " ref={containerRef}>
+    <div className="md:flex">
+      <div className="flex-1" ref={containerRef}>
+        {selectedPlayer && window.innerWidth >= 640 && (
+          <Details player={selectedPlayer} />
+        )}
         <Overview
           players={players}
           selectedPlayer={selectedPlayer}
           onSelectPlayer={handleSelectPlayer}
         />
       </div>
-      <div className="w-full md:w-1/3 flex-shrink-0">
+      <div className="md:w-1/3">
         <Sort
           onSort={handleSort}
           isDarkMode={isDarkMode}
