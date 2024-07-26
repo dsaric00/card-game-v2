@@ -36,19 +36,10 @@ const App: React.FC = () => {
     });
   };
   //Function to select or deselect a player 
-  const handleSelectPlayer = (player: Player) => {
-    if (selectedPlayer && selectedPlayer.id === player.id) {
-      // Deselect player if the same player is clicked
-      setSelectedPlayer(null);
-      //Remove focus if the same player is clicked with blur() method
-      const focusedElement = document.activeElement as HTMLElement;
-      if(focusedElement){
-        focusedElement.blur();
-      }
-    } else {
-      setSelectedPlayer(player);
-    }
-  };
+const handleSelectPlayer = (player: Player | null) => {
+  setSelectedPlayer(player);
+};
+
     //Function to handle clicks outside the container 
   const handleClickOutside = (event: MouseEvent) => {
     console.log('Handling click outside');
@@ -75,11 +66,14 @@ const App: React.FC = () => {
 
   return (
     <div className=" md:flex ">
-      <div className="justify-start " ref={containerRef}>
-        {selectedPlayer && <Details player={selectedPlayer} />}
-        <Overview players={players} onSelect={handleSelectPlayer} />
+      <div className="flex-1 " ref={containerRef}>
+        <Overview
+          players={players}
+          selectedPlayer={selectedPlayer}
+          onSelectPlayer={handleSelectPlayer}
+        />
       </div>
-      <div className="justify-end md:w-1/3">
+      <div className="w-full md:w-1/3 flex-shrink-0">
         <Sort
           onSort={handleSort}
           isDarkMode={isDarkMode}
