@@ -15,7 +15,7 @@ const Sort = ({ onSort, isDarkMode, toggleDarkMode }: SortProps) => {
   const [order, setOrder] = useState<SortOrder>('asc');
 
   //Function to change the sort order
-  const handleSort1 = (selectedOrder: SortOrder) => {
+  const handleSort = (selectedOrder: SortOrder) => {
     setOrder(selectedOrder);
   };
 
@@ -46,14 +46,14 @@ const Sort = ({ onSort, isDarkMode, toggleDarkMode }: SortProps) => {
         <button
           className={` ${order === 'asc'} text-center bg-blue-400 focus:bg-blue-500 focus:ring hover:bg-blue-500 font-sans py-2 px-4 rounded-xl m-2 text-2xl `}
           type="button"
-          onClick={() => handleSort1('asc')}
+          onClick={() => handleSort('asc')}
         >
           SORT ASC
         </button>
         <button
           className={` ${order === 'desc'} text-center bg-blue-400 focus:bg-blue-500 focus:ring hover:bg-blue-500  font-sans py-2 px-4 rounded-xl m-2 text-2xl `}
           type="button"
-          onClick={() => handleSort1('desc')}
+          onClick={() => handleSort('desc')}
         >
           SORT DESC
         </button>
