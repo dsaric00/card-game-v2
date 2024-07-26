@@ -34,10 +34,12 @@ const App: React.FC = () => {
       });
     });
   };
-
+  //Function to select or deselect a player
   const handleSelectPlayer = (player: Player | null) => {
     if (selectedPlayer && player && selectedPlayer.id === player.id) {
       setSelectedPlayer(null);
+      // Deselect player if the same player is clicked
+      //Remove focus if the same player is clicked with blur() method
       const focusedElement = document.activeElement as HTMLElement;
       if (focusedElement) {
         focusedElement.blur();
@@ -46,7 +48,7 @@ const App: React.FC = () => {
       setSelectedPlayer(player);
     }
   };
-
+  //Function to handle clicks outside the container
   const handleClickOutside = (event: MouseEvent) => {
     if (
       containerRef.current &&
@@ -55,14 +57,14 @@ const App: React.FC = () => {
       setSelectedPlayer(null);
     }
   };
-
+  // useEffect to set up and clean up event listener for clicks outside the container
   useEffect(() => {
     document.addEventListener('click', handleClickOutside, true);
     return () => {
       document.removeEventListener('click', handleClickOutside, true);
     };
   }, []);
-
+  // useEffect for Dark Mod
   useEffect(() => {
     document.documentElement.classList.toggle('dark', isDarkMode);
   }, [isDarkMode]);
