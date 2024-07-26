@@ -10,7 +10,8 @@ const App: React.FC = () => {
   const [selectedPlayer, setSelectedPlayer] = useState<Player | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const [isDarkMode, setIsDarkMode] = useState(false);
-
+  
+    // useEffect to fetch player data 
   useEffect(() => {
     const getPlayers = async () => {
       try {
@@ -22,7 +23,7 @@ const App: React.FC = () => {
     };
     getPlayers();
   }, []);
-
+  // Function to sort players by their real names
   const handleSort = (order: 'asc' | 'desc') => {
     setPlayers((prevPlayers) => {
       return [...prevPlayers].sort((a, b) => {
@@ -34,16 +35,21 @@ const App: React.FC = () => {
       });
     });
   };
-
+  //Function to select or deselect a player 
   const handleSelectPlayer = (player: Player) => {
     if (selectedPlayer && selectedPlayer.id === player.id) {
       // Deselect player if the same player is clicked
       setSelectedPlayer(null);
+      //Remove focus if the same player is clicked with blur() method
+      const focusedElement = document.activeElement as HTMLElement;
+      if(focusedElement){
+        focusedElement.blur();
+      }
     } else {
       setSelectedPlayer(player);
     }
   };
-
+    //Function to handle clicks outside the container 
   const handleClickOutside = (event: MouseEvent) => {
     console.log('Handling click outside');
     if (
@@ -55,11 +61,10 @@ const App: React.FC = () => {
     }
   };
 
+    // useEffect to set up and clean up event listener for clicks outside the container 
   useEffect(() => {
-    console.log('Adding event listener for click outside');
     document.addEventListener('click', handleClickOutside, true);
     return () => {
-      console.log('Removing event listener for click outside');
       document.removeEventListener('click', handleClickOutside, true);
     };
   }, []);
@@ -70,7 +75,7 @@ const App: React.FC = () => {
 
   return (
     <div className=" md:flex ">
-      <div className='justify-start '  ref={containerRef}>
+      <div className="justify-start " ref={containerRef}>
         {selectedPlayer && <Details player={selectedPlayer} />}
         <Overview players={players} onSelect={handleSelectPlayer} />
       </div>

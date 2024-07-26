@@ -32,7 +32,7 @@ const Sort = ({ onSort, isDarkMode, toggleDarkMode }: SortProps) => {
       className="text-center rounded-3xl border border-black m-3  dark:border-white "
     >
       <div className="flex justify-between items-center p-5">
-        <h1 className="text-4xl text-left">Controls</h1>
+        <h1 className="text-4xl text-left px-3">Controls</h1>
         <button
           className="rounded-3xl  bg-slate-300  text-black p-3 hover:bg-slate-500"
           type="button"

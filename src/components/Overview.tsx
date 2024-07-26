@@ -28,7 +28,7 @@ const Overview = ({ players, onSelect }: OverviewPropsb) => {
       <div className="grid  gap-4 grid-cols-2 sm:grid-cols-2 lg:grid-cols-3  p-4">
         {localPlayers.map((player) => (
           <button
-            className=" p-5 m-5 text-start text-2xl  border border-black rounded-2xl hover:bg-green-300 focus:bg-green-500 font-sans dark:border-white "
+            className=" p-5 m-5 text-start text-2xl  border border-black rounded-2xl  sm:hover:bg-green-300 focus:bg-green-500 font-sans dark:border-white "
             key={player.id}
             onClick={() => {
               console.log('Card clicked:', player);
